@@ -32,11 +32,14 @@ server.use('/auth', authRouter.router)
 server.use('/cart', cartRouter.router)
 server.use('/orders', ordersRouter.router)
 
+const port = process.env.PORT;
+const mongoURI = process.env.DB_URI;
 main().catch(err => console.log(err));
 
+
 async function main() {
-    await mongoose.connect(`${process.env.DB_URI}`);
-    console.log('database connected')
+    await mongoose.connect(mongoURI);
+    console.log(`database connected with ${mongoURI}`)
 }
 
 server.get('/', (req, res) => {
@@ -45,6 +48,6 @@ server.get('/', (req, res) => {
 
 
 server.post('/products', createProduct);
-server.listen(`${process.env.PORT}`, () => {
-    console.log('server started')
+server.listen(port, () => {
+    console.log(`server started on ${port}`)
 })
