@@ -18,14 +18,7 @@ dotenv.config({
 })
 //middlewares
 
-server.use(express.static('build', {
-    setHeaders: function (res, path) {
-        const fileType = mime.lookup(path);
-        if (fileType) {
-            res.setHeader('Content-Type', fileType);
-        }
-    }
-}));
+
 
 server.use(cors({
     exposedHeaders: ['X-Total-Count']
