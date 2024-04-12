@@ -35,7 +35,7 @@ server.use('/orders', ordersRouter.router)
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect(`${process.env.DB_URI}`);
+    await mongoose.connect(process.env.DB_URI);
     console.log('database connected')
 }
 
@@ -45,6 +45,6 @@ server.get('/', (req, res) => {
 
 
 server.post('/products', createProduct);
-server.listen(`${process.env.PORT}`, () => {
+server.listen(process.env.PORT, () => {
     console.log('server started')
 })
