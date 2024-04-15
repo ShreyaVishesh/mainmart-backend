@@ -4,11 +4,18 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, required: true, default:'user' },
-  addresses: { type: [Schema.Types.Mixed] }, 
+  role: { type: String, required: true, default: 'user' },
+  addresses: { type: [Schema.Types.Mixed] },
   // TODO:  We can make a separate Schema for this
   name: { type: String },
-  orders: { type: [Schema.Types.Mixed] }
+  orders: { type: [Schema.Types.Mixed] },
+  totalOrderValueTillNow: { type: Number, default: 0 },
+  smartCoins: { type: Number, default: 0 },
+  subscriptionLevel: {
+    type: String,
+    enum: ['silver', 'gold', 'platinum'],
+    default: 'silver',
+  }
 });
 
 const virtual = userSchema.virtual('id');
