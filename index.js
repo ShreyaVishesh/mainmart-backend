@@ -3,7 +3,6 @@ const express = require('express');
 const server = express();
 const mongoose = require('mongoose');
 const cors = require('cors')
-const mime = require('mime-types');
 const { createProduct } = require('./controller/Product');
 const productsRouter = require('./routes/Products');
 const categoriesRouter = require('./routes/Categories');
@@ -12,6 +11,7 @@ const usersRouter = require('./routes/Users');
 const authRouter = require('./routes/Auth');
 const cartRouter = require('./routes/Cart');
 const ordersRouter = require('./routes/Order');
+const couponRouter = require('./routes/DiscountCoupon');
 
 dotenv.config({
     path: './.env'
@@ -31,6 +31,7 @@ server.use('/users', usersRouter.router)
 server.use('/auth', authRouter.router)
 server.use('/cart', cartRouter.router)
 server.use('/orders', ordersRouter.router)
+server.use('/coupons', couponRouter.router)
 
 const port = process.env.PORT;
 const mongoURI = process.env.DB_URI;
